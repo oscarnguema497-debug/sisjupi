@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A3A5C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SIS JUPI">
+<title>SIS JUPI</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="iconos/icono-192.png">
+<link rel="apple-touch-icon" href="iconos/icono-192.png">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- Primera vez en este aparato -->
+<section id="p-config" class="pantalla">
+  <div class="login-card">
+    <div class="lc-head"><div class="escudo">🎓</div><h1>SIS <span>JUPI</span></h1><p>Gestión educativa · financiera · administrativa</p></div>
+    <div class="lc-body">
+      <p style="text-align:center;font-size:.9rem;font-weight:700;color:var(--azul);margin-bottom:1rem">¿Qué es este aparato?</p>
+      <div class="pasos">
+        <div class="paso-g click" onclick="formRegistroInvitacion()" style="cursor:pointer"><div class="num">🔗</div><div><b>Es mi tableta de trabajo</b><p>Tengo un enlace y una clave que me dio el administrador.</p></div></div>
+        <div class="paso-g click" onclick="elegirCentral()" style="cursor:pointer"><div class="num">👑</div><div><b>Soy el administrador</b><p>Este aparato guardará toda la información de los negocios.</p></div></div>
+      </div>
+      <p id="p-instalar" style="text-align:center;margin-top:1.2rem"><button class="ayuda-btn" id="btn-instalar" style="display:none" onclick="instalarApp()">📲 Instalar la app en este aparato</button></p>
+    </div>
+    <div class="lc-foot" style="text-align:center">Funciona sin Internet. Todo se guarda en este aparato.</div>
+  </div>
+</section>
+
+<!-- Entrar -->
+<section id="p-login" class="pantalla">
+  <div class="login-card">
+    <div class="lc-head"><div class="escudo">🎓</div><h1>SIS <span>JUPI</span></h1><p id="l-sub">Central del administrador</p></div>
+    <div class="lc-body">
+      <div class="campo"><label>Usuario</label><input id="l-user" autocomplete="username" autocapitalize="none"></div>
+      <div class="campo"><label>Contraseña</label><input id="l-pass" type="password" autocomplete="current-password"></div>
+      <button class="btn-login" onclick="login()">ENTRAR</button>
+      <div class="msg" id="l-msg"></div>
+    </div>
+    <div class="lc-foot" style="text-align:center">Funciona sin Internet. Todo se guarda en este aparato.</div>
+  </div>
+</section>
+
+<!-- App -->
+<section id="p-app" class="pantalla">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-title" id="tb-title">Inicio</div>
+      <div class="tb-space"></div>
+      <span class="pill" id="tb-pend"></span>
+      <button class="ayuda-btn" onclick="ayuda()">? Ayuda</button>
+      <button class="btn sec2" id="btn-abrir" onclick="$('f-abrir').click()">📂 Abrir archivo</button>
+      <button class="btn oro" id="btn-sync" onclick="sincronizar()">🔄 SINCRONIZAR</button>
+    </div>
+    <div class="contenido" id="contenido"></div>
+  </div>
+  <nav class="nav-mov" id="navmov"></nav>
+</section>
+
+<input type="file" id="f-abrir" accept=".sync,.jupi,application/json,text/plain" multiple style="display:none">
+<div class="modal-bg" id="modal"><div class="modal"><div class="modal-h"><h3 id="m-title"></h3><button class="x" onclick="cerrarModal()">✕</button></div><div class="modal-b" id="m-body"></div></div></div>
+<div class="toast-wrap" id="toasts"></div>
+
+<script src="js/util.js"></script>
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
